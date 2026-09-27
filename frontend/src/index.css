@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@layer base {
+  :root {
+    --bg-page: #FFF7F1;
+    --color-primary: #F47B4A;
+    --color-primary-dark: #E9653B;
+    --color-peach: #F9C1A5;
+    --color-soft-surface: #FCE5D8;
+    --color-accent: #F6B24D;
+    --color-text-main: #343434;
+    --color-text-muted: #8A817B;
+    --color-border-warm: #F0D8CB;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--color-text-main);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom Utilities for Warm Peach Emergency Theme */
+.bg-page {
+  background-color: #FFF7F1;
+}
+
+.bg-primary-warm {
+  background-color: #F47B4A;
+}
+
+.bg-primary-dark {
+  background-color: #E9653B;
+}
+
+.bg-soft-peach {
+  background-color: #FCE5D8;
+}
+
+.border-warm {
+  border-color: #F0D8CB;
+}
+
+.text-main {
+  color: #343434;
+}
+
+.text-muted-warm {
+  color: #8A817B;
+}
+
+.shadow-warm-sm {
+  box-shadow: 0 2px 8px rgba(244, 123, 74, 0.08);
+}
+
+.shadow-warm-md {
+  box-shadow: 0 4px 20px rgba(244, 123, 74, 0.12);
+}
+
+.shadow-warm-lg {
+  box-shadow: 0 8px 30px rgba(244, 123, 74, 0.16);
+}
+
+/* Custom Leaflet Map Popup Styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 25px rgba(244, 123, 74, 0.18) !important;
+  border: 1px solid #F0D8CB !important;
+  background: #ffffff !important;
+  padding: 0.25rem !important;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+.leaflet-container {
+  font-family: 'Inter', sans-serif !important;
+  z-index: 10;
+}

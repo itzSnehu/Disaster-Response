@@ -1,0 +1,75 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  CONTRIBUTOR
+}
+
+enum DisasterStatus {
+  ACTIVE
+  RESOLVED
+}
+
+enum ResourceType {
+  SHELTER
+  HOSPITAL
+  FOOD
+  WATER
+  RESCUE
+}
+
+model Profile {
+  id        String     @id @db.Uuid
+  email     String?    @db.VarChar(255)
+  role      Role       @default(CONTRIBUTOR)
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+  disasters Disaster[]
+
+  @@map("profiles")
+}
+
+model Disaster {
+  id          String         @id @default(uuid()) @db.Uuid
+  title       String         @db.VarChar(255)
+  description String         @db.Text
+  location    String?        @db.Text
+  latitude    Float?
+  longitude   Float?
+  tags        String[]       @default([])
+  status      DisasterStatus @default(ACTIVE)
+  createdBy   String         @map("created_by") @db.Uuid
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
+
+  author Profile @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+
+  @@index([createdBy])
+  @@index([status])
+  @@index([createdAt])
+  @@index([tags])
+  @@map("disasters")
+}
+
+model Resource {
+  id        String       @id @default(uuid()) @db.Uuid
+  name      String       @db.VarChar(255)
+  type      ResourceType
+  latitude  Float
+  longitude Float
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+
+  @@index([type])
+  @@index([latitude])
+  @@index([longitude])
+  @@map("resources")
+}

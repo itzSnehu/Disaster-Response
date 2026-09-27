@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build Output
+dist/
+
+# Environment Files
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Prisma Generated Files (optional / caching)
+prisma/migrations/*
+!prisma/schema.prisma
+!prisma/seed.ts
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
